@@ -3,8 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 
-
-
+import userRoutes from "./routes/users";
 
 //MongoDb Connection
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
@@ -18,6 +17,9 @@ app.use(cors());
 app.get("/api/test", async (req: Request, res: Response) => {
   res.json({ message: "Hello from Express endpoint!" });
 });
+
+// new routes for an update
+app.use("/api/users", userRoutes);
 
 //listening port
 app.listen(7000, () => {
